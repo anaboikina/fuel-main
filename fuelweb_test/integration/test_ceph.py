@@ -73,7 +73,7 @@ class TestNode(BaseNodeTestCase):
             # SSH to node with Ceph and run Ceph health check:
             ssh = self._get_remote_for_node(self.nodes().slaves[4].name)
             # ssh = self._get_remote(nodes().slaves[4]['ip'])
-            result = "".join(ssh.execute('ceph -s')['stdout'])
+            result = "".join(ssh.execute('ceph health')['stdout'])
             self.assertEqual('HEALTH_OK', result)
 
     @snapshot_errors
@@ -114,7 +114,7 @@ class TestNode(BaseNodeTestCase):
 
         # validate Ceph is operational:
         ssh = self._get_remote_for_node(self.nodes().slaves[4].name)
-        result = "".join(ssh.execute('ceph -s')['stdout'])
+        result = "".join(ssh.execute('ceph health')['stdout'])
         self.assertEqual('HEALTH_OK', result)
 
 if __name__ == '__main__':
